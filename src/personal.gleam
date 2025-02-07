@@ -6,24 +6,33 @@ import lustre/element/html
 
 pub type Msg {
   ToggleDarkMode
+  ToggleMobileMenu
 }
 
 pub type Model {
-  Model(dark_mode: Bool)
+  Model(dark_mode: Bool, open_mobile_menu: Bool)
 }
 
 pub fn init(_) -> Model {
-  Model(dark_mode: False)
+  Model(dark_mode: False, open_mobile_menu: False)
 }
 
 pub fn update(model: Model, msg: Msg) -> Model {
   case msg {
-    ToggleDarkMode -> Model(dark_mode: !model.dark_mode)
+    ToggleDarkMode -> Model(..model, dark_mode: !model.dark_mode)
+    ToggleMobileMenu ->
+      Model(..model, open_mobile_menu: !model.open_mobile_menu)
   }
 }
 
 pub fn view(model: Model) -> Element(Msg) {
-  let navbar_props = navbar.new(model.dark_mode, ToggleDarkMode)
+  let navbar_props =
+    navbar.new(
+      model.dark_mode,
+      model.open_mobile_menu,
+      ToggleDarkMode,
+      ToggleMobileMenu,
+    )
 
   html.div(
     [

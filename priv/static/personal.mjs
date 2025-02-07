@@ -2,7 +2,7 @@
 var CustomType = class {
   withFields(fields) {
     let properties = Object.keys(this).map(
-      (label) => label in fields ? fields[label] : this[label]
+      (label2) => label2 in fields ? fields[label2] : this[label2]
     );
     return new this.constructor(...properties);
   }
@@ -1175,6 +1175,9 @@ function on(name, handler) {
 function class$(name) {
   return attribute("class", name);
 }
+function type_(name) {
+  return attribute("type", name);
+}
 
 // build/dev/javascript/lustre/lustre/element.mjs
 function element(tag, attrs, children2) {
@@ -1928,6 +1931,12 @@ function span(attrs, children2) {
 function button(attrs, children2) {
   return element("button", attrs, children2);
 }
+function input(attrs) {
+  return element("input", attrs, toList([]));
+}
+function label(attrs, children2) {
+  return element("label", attrs, children2);
+}
 
 // build/dev/javascript/lustre/lustre/event.mjs
 function on2(name, handler) {
@@ -1941,15 +1950,16 @@ function on_click(msg) {
 
 // build/dev/javascript/personal/components/navbar/navbar.mjs
 var NavbarProps = class extends CustomType {
-  constructor(msg, dark, mobile_menu) {
+  constructor(toogle_dark, toogle_menu, dark, open_menu) {
     super();
-    this.msg = msg;
+    this.toogle_dark = toogle_dark;
+    this.toogle_menu = toogle_menu;
     this.dark = dark;
-    this.mobile_menu = mobile_menu;
+    this.open_menu = open_menu;
   }
 };
-function new$3(dark, msg) {
-  return new NavbarProps(msg, dark, false);
+function new$3(dark, open_menu, toogle_dark, toogle_menu) {
+  return new NavbarProps(toogle_dark, toogle_menu, dark, open_menu);
 }
 function view(props) {
   let nav_shadow_classes = (() => {
@@ -1979,15 +1989,15 @@ function view(props) {
   let link_classes = (() => {
     let $ = props.dark;
     if ($) {
-      return "text-gray-300 hover:text-white cursor-pointer";
+      return "text-gray-300 hover:text-white cursor-pointer ";
     } else {
-      return "text-gray-700 hover:text-gray-900 cursor-pointer";
+      return "text-gray-700 hover:text-gray-900 cursor-pointer ";
     }
   })();
   let mobile_menu_classes = (() => {
-    let $ = props.mobile_menu;
+    let $ = props.open_menu;
     if ($) {
-      return "block";
+      return "block h-full";
     } else {
       return "hidden";
     }
@@ -2011,7 +2021,7 @@ function view(props) {
                   div(
                     toList([
                       class$(
-                        logo_classes + " w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                        logo_classes + " w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                       )
                     ]),
                     toList([
@@ -2047,9 +2057,9 @@ function view(props) {
                   button(
                     toList([
                       class$(
-                        button_classes + " px-4 py-2 rounded-lg  transition-all duration-300 focus:outline-none"
+                        button_classes + " px-4 py-2 rounded-lg w-full transition-all duration-300 focus:outline-none"
                       ),
-                      on_click(props.msg)
+                      on_click(props.toogle_dark)
                     ]),
                     toList([
                       (() => {
@@ -2063,6 +2073,95 @@ function view(props) {
                     ])
                   )
                 ])
+              ),
+              div(
+                toList([class$("md:hidden")]),
+                toList([
+                  label(
+                    toList([class$("flex flex-col gap-2 w-8")]),
+                    toList([
+                      input(
+                        toList([
+                          class$("peer hidden"),
+                          type_("checkbox"),
+                          on_click(props.toogle_menu)
+                        ])
+                      ),
+                      div(
+                        toList([
+                          class$(
+                            "rounded-2xl h-[3px] w-1/2 bg-black duration-500 peer-checked:rotate-[225deg] origin-right peer-checked:-translate-x-[12px] peer-checked:-translate-y-[1px]"
+                          )
+                        ]),
+                        toList([])
+                      ),
+                      div(
+                        toList([
+                          class$(
+                            "rounded-2xl h-[3px] w-full bg-black duration-500 peer-checked:-rotate-45"
+                          )
+                        ]),
+                        toList([])
+                      ),
+                      div(
+                        toList([
+                          class$(
+                            "rounded-2xl h-[3px] w-1/2 bg-black duration-500 place-self-end peer-checked:rotate-[225deg] origin-left peer-checked:translate-x-[12px] peer-checked:translate-y-[1px]"
+                          )
+                        ]),
+                        toList([])
+                      )
+                    ])
+                  )
+                ])
+              )
+            ])
+          )
+        ])
+      ),
+      div(
+        toList([
+          class$(
+            mobile_menu_classes + " md:hidden rounded-xl mt-4 p-4 overflow-hidden transition-all duration-300 ease-in-out"
+          )
+        ]),
+        toList([
+          div(
+            toList([class$("space-y-3")]),
+            toList([
+              a(
+                toList([
+                  class$(
+                    link_classes + button_classes + " block px-3 py-2 rounded-lg text-center transition-all duration-300"
+                  )
+                ]),
+                toList([text("About")])
+              ),
+              a(
+                toList([
+                  class$(
+                    link_classes + button_classes + " block px-3 py-2 rounded-lg text-center transition-all duration-300"
+                  )
+                ]),
+                toList([text("Log")])
+              ),
+              button(
+                toList([
+                  class$(
+                    button_classes + " w-full px-3 py-2 rounded-lg text-center transition-all duration-300 focus:outline-none"
+                  ),
+                  on_click(props.toogle_dark)
+                ]),
+                toList([
+                  (() => {
+                    let $ = props.dark;
+                    if ($) {
+                      return text("\u2600\uFE0F");
+                    } else {
+                      return text("\u{1F319}");
+                    }
+                  })()
+                ])
               )
             ])
           )
@@ -2075,22 +2174,34 @@ function view(props) {
 // build/dev/javascript/personal/personal.mjs
 var ToggleDarkMode = class extends CustomType {
 };
+var ToggleMobileMenu = class extends CustomType {
+};
 var Model2 = class extends CustomType {
-  constructor(dark_mode) {
+  constructor(dark_mode, open_mobile_menu) {
     super();
     this.dark_mode = dark_mode;
+    this.open_mobile_menu = open_mobile_menu;
   }
 };
 function init2(_) {
-  return new Model2(false);
+  return new Model2(false, false);
 }
 function update(model, msg) {
-  {
-    return new Model2(!model.dark_mode);
+  if (msg instanceof ToggleDarkMode) {
+    let _record = model;
+    return new Model2(!model.dark_mode, _record.open_mobile_menu);
+  } else {
+    let _record = model;
+    return new Model2(_record.dark_mode, !model.open_mobile_menu);
   }
 }
 function view2(model) {
-  let navbar_props = new$3(model.dark_mode, new ToggleDarkMode());
+  let navbar_props = new$3(
+    model.dark_mode,
+    model.open_mobile_menu,
+    new ToggleDarkMode(),
+    new ToggleMobileMenu()
+  );
   return div(
     toList([
       class$(
@@ -2119,7 +2230,7 @@ function main() {
     throw makeError(
       "let_assert",
       "personal",
-      51,
+      60,
       "main",
       "Pattern match failed, no pattern matched the value.",
       { value: $ }
