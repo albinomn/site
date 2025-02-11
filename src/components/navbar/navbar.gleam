@@ -32,7 +32,9 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
   html.nav(
     [
       attribute.class(
-        "shadow-neu dark:shadow-dark-neu w-full rounded-md p-4 flex justify-between items.center transition-all duration-300",
+        "w-full rounded-md p-4 flex justify-between items.center "
+        <> "shadow-neu dark:shadow-dark-neu "
+        <> "transition-all duration-300",
       ),
     ],
     [
@@ -51,47 +53,81 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
         ),
       ]),
       // Links section
-      html.div([attribute.class("items-center justify-center flex")], [
-        html.button([], [element.text("Sobre")]),
-        html.button([], [element.text("Log")]),
-        html.label(
-          [attribute.class("inline-flex items-center cursor-pointer")],
-          [
-            html.div(
-              [
-                attribute.class(
-                  "bg-gradient-to-br from-bg-gray-800 to-gray-900"
-                  <> "relative h-[30px] w-[60px] rounded-full overflow-hidden shadow-neu-switch dark:shadow-dark-neu-switch",
-                ),
-              ],
-              [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("check"),
-                  attribute.value("check"),
-                  attribute.class("hidden peer"),
-                  event.on_click(props.toogle_dark),
-                ]),
-                html.div(
-                  [
-                    attribute.class(
-                      "top-0 left-0 h-full w-[29px] rounded-[15px] shadow-neu bg-sky-100 dark:bg-sky-900 dark:shadow-slider duration-[350ms]   peer-checked:translate-x-[30px] peer-checked:rotate-[120deg]",
-                    ),
-                  ],
-                  [
-                    case props.dark {
-                      True ->
-                        icon.moon([attribute.class("inline text-gray-200 p-1")])
-                      False ->
-                        icon.sun([attribute.class("inline text-gray-800 p-1")])
-                    },
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ]),
+      html.div(
+        [
+          attribute.class(
+            "items-center justify-center flex gap-4 h-12 font-medium "
+            <> "text-gray-800 "
+            <> "dark:text-gray-100",
+          ),
+        ],
+        [
+          html.button(
+            [
+              attribute.class(
+                "rounded-md py-1 px-3 uppercase "
+                <> "shadow-neu active:shadow-neu-inner "
+                <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner",
+              ),
+            ],
+            [element.text("Sobre")],
+          ),
+          html.button(
+            [
+              attribute.class(
+                "rounded-md py-1 px-3 uppercase "
+                <> "shadow-neu active:shadow-neu-inner "
+                <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner",
+              ),
+            ],
+            [element.text("Log")],
+          ),
+          html.label(
+            [attribute.class("inline-flex items-center cursor-pointer")],
+            [
+              html.div(
+                [
+                  attribute.class(
+                    "relative h-[30px] w-[60px] overflow-hidden rounded-full "
+                    <> "bg-gradient-to-br from-bg-gray-800 to-gray-900 "
+                    <> "shadow-neu-switch "
+                    <> "dark:shadow-dark-neu-switch",
+                  ),
+                ],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.name("check"),
+                    attribute.value("check"),
+                    attribute.class("hidden peer"),
+                    event.on_click(props.toogle_dark),
+                  ]),
+                  html.div(
+                    [
+                      attribute.class(
+                        "top-0 left-0 h-full w-[30px] rounded-[15px] "
+                        <> "shadow-neu bg-sky-100 "
+                        <> "dark:bg-sky-900 dark:shadow-slider "
+                        <> "transition-all duration-[350ms] peer-checked:translate-x-[30px] peer-checked:rotate-[130deg]",
+                      ),
+                    ],
+                    [
+                      case props.dark {
+                        True ->
+                          icon.moon([
+                            attribute.class("inline text-gray-200 p-1 "),
+                          ])
+                        False ->
+                          icon.sun([attribute.class("inline text-gray-800 p-1")])
+                      },
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     ],
   )
   // html.nav(
