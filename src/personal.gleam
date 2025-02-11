@@ -41,13 +41,13 @@ pub fn view(model: Model) -> Element(Msg) {
           True ->
             "dark bg-gray-800 bg-gradient-to-br from-bg-gray-800 to-gray-900"
           False ->
-            "light bg-gray-100 bg-gradient-to-br from-bg-gray-100 to-gray-200"
+            "light bg-gray-200 bg-gradient-to-br from-bg-gray-100 to-gray-200"
         }
-        <> " w-full mx-auto transition-all duration-300 p-3",
+        <> " transition-all duration-300 p-3 h-screen",
       ),
     ],
     [
-      html.div([attribute.class("max-w-[1080px] mx-auto w-full ")], [
+      html.div([attribute.class("max-w-[1080px] mx-auto w-full")], [
         navbar.view(navbar_props),
       ]),
     ],
