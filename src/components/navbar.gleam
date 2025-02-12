@@ -18,17 +18,6 @@ pub fn new(
 }
 
 pub fn view(props: NavbarProps(msg)) -> Element(msg) {
-  // let link_classes = case props.dark {
-  //   True -> ""
-  //   False -> ""
-  // }
-
-  // // Mobile menu classes
-  // let mobile_menu_classes = case props.open_menu {
-  //   True -> ""
-  //   False -> "hidden"
-  // }
-
   html.nav(
     [
       attribute.class(
@@ -58,7 +47,8 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
           attribute.class(
             "items-center justify-center flex gap-4 h-12 font-medium "
             <> "text-gray-800 "
-            <> "dark:text-gray-100",
+            <> "dark:text-gray-100 "
+            <> "transition-all duration-300",
           ),
         ],
         [

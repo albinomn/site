@@ -1,0 +1,37 @@
+@import "tailwind/base";
+@import "tailwind/components";
+@import "tailwind/utilities";
+@import "tailwind/variants";
+
+@layer base {
+  .custom-scrollbar {
+    overflow-y: auto;
+    scrollbar-color: var(--scrollbar-thumb) transparent; /* Thumb visible, track transparent */
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Hide Scrollbar Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Default Light Mode Scrollbar Thumb (gray-800) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
+    border-radius: 10px;
+}
+
+/* Remove Scrollbar Arrows */
+.custom-scrollbar::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* Dark Mode Scrollbar Thumb (gray-200) */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d1d5db; /* Tailwind gray-200 */
+}
+}
