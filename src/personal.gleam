@@ -1,5 +1,4 @@
 import components/about
-import components/container
 import components/navbar
 import lustre
 import lustre/attribute
@@ -45,13 +44,13 @@ pub fn view(model: Model) -> Element(Msg) {
           False ->
             "light bg-gray-200 bg-gradient-to-br from-bg-gray-100 to-gray-200"
         }
-        <> " transition-all duration-300 h-screen",
+        <> " transition-all duration-300 min-h-screen",
       ),
     ],
     [
       html.div([attribute.class("max-w-[1080px] mx-auto w-full p-4")], [
         navbar.view(navbar_props),
-        container.view([about.view()]),
+        about.view(),
       ]),
     ],
   )
