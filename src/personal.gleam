@@ -1,4 +1,5 @@
 import components/about
+import components/footer
 import components/navbar
 import lustre
 import lustre/attribute
@@ -48,10 +49,14 @@ pub fn view(model: Model) -> Element(Msg) {
       ),
     ],
     [
-      html.div([attribute.class("max-w-[1080px] mx-auto w-full p-4")], [
-        navbar.view(navbar_props),
-        about.view(),
-      ]),
+      html.div(
+        [
+          attribute.class(
+            "max-w-[1080px] min-h-screen flex flex-col mx-auto w-full p-4",
+          ),
+        ],
+        [navbar.view(navbar_props), about.view(), footer.view()],
+      ),
     ],
   )
 }
