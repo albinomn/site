@@ -31,9 +31,14 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html dist/index.html
+          cp src/components/scrollbar.css dist/scrollbar.css
+          cp -r static dist/static
           cp -r priv dist/priv
       - name: Update path in index.html to use minified app
-        run: sed -i 's|priv/static/personal.mjs|priv/static/personal.min.mjs|' dist/index.html
+        run: |
+          sed -i 's|priv/static/personal.mjs|site/priv/static/personal.min.mjs|' dist/index.html
+          sed -i 's|priv/static/personal.css|priv/static/personal.min.css|' dist/index.html
+          sed -i 's|src/components/scrollbar.css|scrollbar.css|' dist/index.html
       - name: Setup pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

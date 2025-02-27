@@ -12,7 +12,7 @@ pub fn view() -> Element(a) {
       "Full Stack",
       "Remote",
       "March 2021 - October 2024",
-      "Worked on e-commerce development, rewriting legacy code and adding new features, also helped develop a platform for the sales team",
+      "Worked on e-commerce development, rewriting legacy code and adding new features",
     ),
     CareerDescriptionProps(
       "HartB Group",
