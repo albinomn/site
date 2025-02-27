@@ -93,17 +93,17 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
               ),
             ],
             [
-              html.button(
-                [
-                  attribute.class(
-                    "rounded-md py-1 px-3 uppercase "
-                    <> "shadow-neu active:shadow-neu-inner "
-                    <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner "
-                    <> "w-full",
-                  ),
-                ],
-                [icon.github_logo([])],
-              ),
+              // html.button(
+              //   [
+              //     attribute.class(
+              //       "rounded-md py-1 px-3 uppercase "
+              //       <> "shadow-neu active:shadow-neu-inner "
+              //       <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner "
+              //       <> "w-full",
+              //     ),
+              //   ],
+              //   [icon.github_logo([attribute.class("w-2")])],
+              // ),
               html.button(
                 [
                   attribute.class(
