@@ -29,17 +29,6 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
     [
       // Logo section
       html.div([attribute.class("flex justify-between items-center")], [
-        html.div(
-          [
-            attribute.class(
-              "w-12 h-12 rounded-full"
-              <> " flex items-center justify-center transition-all duration-300"
-              <> " text-gray-800 shadow-neu-inner"
-              <> " dark:text-gray-100 dark:shadow-dark-neu-inner",
-            ),
-          ],
-          [html.span([attribute.class("font-bold")], [element.text("AN")])],
-        ),
         html.label(
           [attribute.class("w-10 h-7 cursor-pointer md:hidden relative ")],
           [
@@ -107,13 +96,13 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
               html.button(
                 [
                   attribute.class(
-                    "rounded-md md:my-0 py-1 px-3 uppercase "
+                    "rounded-md py-1 px-3 uppercase "
                     <> "shadow-neu active:shadow-neu-inner "
                     <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner "
-                    <> "w-full my-5",
+                    <> "w-full",
                   ),
                 ],
-                [element.text("Sobre")],
+                [icon.github_logo([])],
               ),
               html.button(
                 [

@@ -7,15 +7,14 @@ pub fn view() -> Element(a) {
   html.div([], [
     html.div([attribute.class(" md:flex pt-5 gap-4")], [
       html.img([
-        attribute.class("w-72 p-2 shadow-neu dark:shadow-dark-neu"),
-        attribute.src(
-          "https://avatars.githubusercontent.com/u/43091506?s=400&u=d9e0f540eaa24476f70ed2148e6eaa9a9bc958d3&v=4",
-        ),
+        attribute.class("w-72 shadow-neu dark:shadow-dark-neu"),
+        attribute.src("/static/eu.webp"),
       ]),
       html.div(
         [
           attribute.class(
-            "p-4 mt-3 md:mt-0 max-h-72 custom-scrollbar shadow-neu  dark:shadow-dark-neu",
+            "p-4 mt-3 md:mt-0 max-h-72 custom-scrollbar "
+            <> "shadow-neu dark:shadow-dark-neu",
           ),
         ],
         [

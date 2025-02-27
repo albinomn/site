@@ -52,7 +52,8 @@ pub fn view(model: Model) -> Element(Msg) {
       html.div(
         [
           attribute.class(
-            "max-w-[1080px] min-h-screen flex flex-col mx-auto w-full p-4",
+            "max-w-[1080px] min-h-screen flex flex-col mx-auto w-full p-4 "
+            <> "text-gray-600 dark:text-gray-300",
           ),
         ],
         [navbar.view(navbar_props), about.view(), footer.view()],
