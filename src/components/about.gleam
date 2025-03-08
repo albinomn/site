@@ -7,13 +7,13 @@ pub fn view() -> Element(a) {
   html.div([], [
     html.div([attribute.class("md:flex pt-5 gap-4")], [
       html.img([
-        attribute.class("w-72 shadow-neu dark:shadow-dark-neu rounded-md"),
+        attribute.class("md:w-72 shadow-neu dark:shadow-dark-neu rounded-md"),
         attribute.src("/site/static/eu.webp"),
       ]),
       html.div(
         [
           attribute.class(
-            "p-4 mt-3 md:mt-0 max-h-72 custom-scrollbar rounded-md "
+            "p-4 mt-3 md:mt-0 md:max-h-72 custom-scrollbar rounded-md "
             <> "shadow-neu dark:shadow-dark-neu",
           ),
         ],
