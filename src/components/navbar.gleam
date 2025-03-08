@@ -87,7 +87,7 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
                 <> "dark:text-gray-100 "
                 <> "transition-all duration-300 md:overflow-visible "
                 <> case props.open_menu {
-                  True -> "h-28"
+                  True -> "h-12"
                   False -> "h-0 overflow-hidden"
                 },
               ),
@@ -107,7 +107,7 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
               html.button(
                 [
                   attribute.class(
-                    "rounded-md py-1 px-3 uppercase "
+                    "rounded-md py-1 px-3 uppercase mt-5 md:mt-0 "
                     <> "shadow-neu active:shadow-neu-inner "
                     <> "dark:shadow-dark-neu dark:active:shadow-dark-neu-inner "
                     <> "w-full",
@@ -120,7 +120,7 @@ pub fn view(props: NavbarProps(msg)) -> Element(msg) {
                   attribute.class(
                     "md:flex md:items-center cursor-pointer "
                     <> case props.open_menu {
-                      True -> "absolute top-10 left-[60%]"
+                      True -> "absolute top-7 left-[70%]"
                       _ -> ""
                     },
                   ),
